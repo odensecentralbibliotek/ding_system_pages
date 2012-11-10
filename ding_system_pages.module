@@ -43,7 +43,18 @@ drupal_form_submit("{$node->type}_node_form", $form_state, $node);
 }
 
 function ding_system_pages_disable() {
-
+  $query = new EntityFieldQuery();  
+  $entities = $query->entityCondition('entity_type', 'node')  
+      ->propertyCondition('type', 'ding_page')  
+      ->propertyCondition('title', 'Siden blev ikke fundet')  
+      ->propertyCondition('status', 1)  
+      ->range(0,1)  
+      ->execute();  
+  if (!empty($entities['node'])) {    
+    $node = node_load(array_shift(array_keys($entities['node'])));  
+    node_delete($node->nid);
+    }
+  
   variable_del ('site_404');
   variable_del ('site_403');
 }
