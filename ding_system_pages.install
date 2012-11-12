@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Installs default 404 and 403 pages.
+ * Installs default 404 pages.
  */
 
 /**
@@ -40,7 +40,6 @@ function ding_system_pages_enable() {
   drupal_form_submit("{$node->type}_node_form", $form_state, $node);
   variable_set('ding_system_pages_nid', $node->nid);
   variable_set('site_404', 'node/' . $node->nid);
-  variable_set('site_403', 'node/' . $node->nid);
 }
 
 /**
@@ -51,9 +50,6 @@ function ding_system_pages_disable() {
   node_delete($nid);
   if (variable_get('site_404') == 'node/' . $nid) {
     variable_del('site_404');
-  }
-  if (variable_get('site_403') == 'node/' . $nid) {
-    variable_del('site_403');
   }
   variable_del('ding_system_pages_nid');
 }
