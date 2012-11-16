@@ -1,7 +1,7 @@
-name = ding_system_pages
+name = Ding system pages
 description = Install 404 (not found) pages
 core = 7.x
-package = Ding
+package = Ding!
 version = 7.x-1.0
-project = ding_system_errors
+project = ding_system_pages
 dependencies[] = ding_page
